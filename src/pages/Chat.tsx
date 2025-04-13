@@ -16,6 +16,9 @@ import { Avatar } from "@/components/ui/avatar";
 import ChatMessage from "@/components/ChatMessage";
 import { cn } from "@/lib/utils";
 
+// Temporary API key configuration
+const GPT_API_KEY = "12345";
+
 interface Message {
   id: string;
   content: string;
@@ -54,11 +57,11 @@ const Chat = () => {
     setInputValue("");
     setIsLoading(true);
 
-    // Simulate AI response
+    // Simulate AI response with API key check
     setTimeout(() => {
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: "This is a simulated response. In a real implementation, this would connect to an AI API. You can test your MCP flow connections with your local server by replacing this section.",
+        content: `API Key used: ${GPT_API_KEY ? 'Valid' : 'Missing'}. This is a simulated response. In a real implementation, this would connect to the AI API using the provided key.`,
         role: "assistant",
         timestamp: new Date(),
       };
