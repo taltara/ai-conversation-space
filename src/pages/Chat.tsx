@@ -1,6 +1,5 @@
-
 import { useState, useRef, useEffect } from "react";
-import { Send, Mic, MoreVertical, ChevronDown } from "lucide-react";
+import { Send, Mic, MoreVertical, ChevronDown, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
@@ -16,7 +15,6 @@ import { Avatar } from "@/components/ui/avatar";
 import ChatMessage from "@/components/ChatMessage";
 import { cn } from "@/lib/utils";
 
-// Temporary API key configuration
 const GPT_API_KEY = "12345";
 
 interface Message {
@@ -57,7 +55,6 @@ const Chat = () => {
     setInputValue("");
     setIsLoading(true);
 
-    // Simulate AI response with API key check
     setTimeout(() => {
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -70,7 +67,6 @@ const Chat = () => {
       setIsLoading(false);
     }, 1500);
 
-    // Focus back on the textarea
     if (textareaRef.current) {
       textareaRef.current.focus();
     }
@@ -90,7 +86,6 @@ const Chat = () => {
 
   return (
     <div className="flex flex-col h-screen bg-background text-foreground">
-      {/* Header */}
       <header className="border-b p-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <h1 className="font-semibold text-xl">AI Chat</h1>
@@ -116,7 +111,6 @@ const Chat = () => {
         </div>
       </header>
 
-      {/* Chat messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-muted-foreground">
@@ -133,21 +127,16 @@ const Chat = () => {
           ))
         )}
         {isLoading && (
-          <div className="flex items-start gap-3">
-            <Avatar className="h-8 w-8 bg-primary/10">
-              <div className="h-full w-full flex items-center justify-center">
-                <span className="animate-pulse">•••</span>
-              </div>
-            </Avatar>
-            <div className="rounded-lg bg-muted py-2 px-3 text-sm w-fit max-w-3xl">
-              AI is thinking...
-            </div>
+          <div className="flex items-center justify-center w-full my-4">
+            <Loader2 
+              className="h-8 w-8 text-primary animate-spin-slow" 
+              strokeWidth={2} 
+            />
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input area */}
       <div className="border-t bg-background p-4">
         <div className="mx-auto max-w-4xl relative">
           <Textarea
