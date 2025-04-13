@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -107,6 +108,11 @@ export default {
 					"0%": { transform: "rotate(0deg)" },
 					"50%": { transform: "rotate(180deg)" },
 					"100%": { transform: "rotate(360deg)" }
+				},
+				"pulse-ball": {
+					"0%": { transform: "scale(0.8)", opacity: "0.6" },
+					"50%": { transform: "scale(1.2)", opacity: "1" },
+					"100%": { transform: "scale(0.8)", opacity: "0.6" }
 				}
 			},
 			animation: {
@@ -114,7 +120,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 				'fade-in': 'fade-in 0.3s ease-out',
-				"spin-slow": "spin-slow 1.5s linear infinite"
+				"spin-slow": "spin-slow 1.5s linear infinite",
+				"pulse-ball": "pulse-ball 1s ease-in-out infinite"
 			}
 		}
 	},

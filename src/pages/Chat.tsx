@@ -1,5 +1,6 @@
+
 import { useState, useRef, useEffect } from "react";
-import { Send, Mic, MoreVertical, ChevronDown, Loader2 } from "lucide-react";
+import { Send, Mic, MoreVertical, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
@@ -127,11 +128,19 @@ const Chat = () => {
           ))
         )}
         {isLoading && (
-          <div className="flex items-center justify-center w-full my-4">
-            <Loader2 
-              className="h-8 w-8 text-primary animate-spin-slow" 
-              strokeWidth={2} 
-            />
+          <div className="flex items-start gap-3 animate-fade-in">
+            <Avatar className="h-8 w-8 bg-primary/10">
+              <div className="h-full w-full flex items-center justify-center">
+                <span className="text-xs font-semibold">AI</span>
+              </div>
+            </Avatar>
+            
+            <div className="space-y-1 max-w-3xl">
+              <div className="rounded-lg py-2 px-3 text-sm bg-muted flex items-center">
+                <div className="h-3 w-3 rounded-full bg-primary animate-pulse-ball mr-2"></div>
+                <span className="text-muted-foreground">AI is thinking...</span>
+              </div>
+            </div>
           </div>
         )}
         <div ref={messagesEndRef} />
